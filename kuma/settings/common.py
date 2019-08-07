@@ -1242,9 +1242,6 @@ ATTACHMENT_SITE_URL = PROTOCOL + ATTACHMENT_HOST
 _PROD_ATTACHMENT_ORIGIN = 'demos-origin.mdn.mozit.cloud'
 ATTACHMENT_ORIGIN = config('ATTACHMENT_ORIGIN', default=_PROD_ATTACHMENT_ORIGIN)
 
-BETA_HOST = config('BETA_HOST', default='beta.' + DOMAIN)
-BETA_ORIGIN = config('BETA_ORIGIN', default='beta.mdn.mozit.cloud')
-BETA_SITE_URL = PROTOCOL + BETA_HOST
 WIKI_HOST = config('WIKI_HOST', default='wiki.' + DOMAIN)
 WIKI_SITE_URL = PROTOCOL + WIKI_HOST
 
@@ -1352,7 +1349,6 @@ EMAIL_FILE_PATH = '/app/tmp/emails'
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_CONNECT_SRC = [
     SITE_URL,
-    BETA_SITE_URL,
     WIKI_SITE_URL,
 ]
 CSP_FONT_SRC = [
@@ -1364,7 +1360,6 @@ CSP_FRAME_SRC = [
 
 CSP_IMG_SRC = [
     SITE_URL,
-    BETA_SITE_URL,
     "data:",
     PROTOCOL + "i2.wp.com",
     "https://secure.gravatar.com",
@@ -1770,7 +1765,7 @@ CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
 # appended as well, and we don't want that behavior (a server port of 8000 is
 # added both in secure local development as well as in K8s stage/production, so
 # that will guarantee a mismatch with the referer).
-CSRF_TRUSTED_ORIGINS = [WIKI_HOST, DOMAIN, BETA_HOST]
+CSRF_TRUSTED_ORIGINS = [WIKI_HOST, DOMAIN]
 X_FRAME_OPTIONS = 'DENY'
 
 
