@@ -34,6 +34,8 @@ if (process.env.SENTRY_DSN) {
     sentry.init(options);
 }
 
+testSentryCapturesUncaughtExceptions();
+
 // Configuration
 const PID = process.pid;
 const PORT = parseInt(process.env.SSR_PORT) || 8000;
